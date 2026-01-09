@@ -5,13 +5,13 @@ import AuthButton from "@/components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
 import ProductCard from "@/components/ProductCard";
 
-const supabase = await createClient();
-const { data: { user } } = await supabase.auth.getUser();
-const { data: products } = user
-  ? await supabase.from("products").select("*")
-  : { data: [] };
-
 export default async function Home() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const { data: products } = user
+    ? await supabase.from("products").select("*")
+    : { data: [] };
+
   const FEATURES = [
     {
       icon: Rabbit,
